@@ -1,0 +1,111 @@
+This work is licensed under a Creative Commons
+Attribution-NonCommercial-NoDerivatives 4.0 International License.
+(http://creativecommons.org/licenses/by-nc-nd/4.0/)
+
+ECS 175 Fall 2019 - Assignment 4 Manual
+Author: lxylxy123456 (https://github.com/lxylxy123456/)
+
+GUI using: https://github.com/libglui/glui
+
+Run
+    (The program will always try to read the file `test_scene` for curves)
+    ./Project4
+
+Note
+    All feedback information will appear at lower part of screen as text. 
+    All Bezier curves are colored blue
+    Most B-spline curves are colored green; the selected one is colored orange.
+
+Show / hide control vertex / polygon
+    Use checkbox "Show / hide control vertex" and "Show / hide control polygon"
+    When operating on curves that involves clicking on screen (e.g. add, insert,
+     move, delete vertex / curve), please make sure control vertices and control
+     polygons are visible.
+
+Operation on curve
+    Add a curve
+        1. Specify number of endpoints (input or adjust up / down)
+        2. Specify whether draw B-spline or Bezier curve
+        3. Press "Add curve"
+        4. Click on screen for each position of control points
+        5. Note: for B-spline curve, the order of new curve is always 2
+    Delete a curve: 
+        1. Press "Delete curve"
+        2. Click on a CONTROL POINT of a curve on screen
+    Hide one curve: 
+        1. Press "Hide one curve"
+        2. Click on a CONTROL POINT of a curve on screen
+    Show only one curve: 
+        1. Press "Show only one curve"
+        2. Click on a CONTROL POINT of a curve on screen
+        3. All other curves will be hidden, the one selected will remain there
+    Show all curves: 
+        0. This is the only way to show a hidden curve
+        1. Click on "Show all curves"
+        2. All curves will be shown
+        3. Sorry I cannot find a way to select a hidden curve
+    Convert between B-spline curves / Bazier curves
+        0. Click on "Bezier <--> B-spline"
+        1. Click on a CONTROL POINT of a curve on screen
+    Convert all curves to Bezier
+        1. Click "All visible curve -> Bezier"
+    Convert all curves to B-spline
+        1. Click "All visible curve -> B-spline"
+
+Operation on vertex
+    These operations will apply on the closest curve that is not hidden
+    If you want to specify a curve, use "Show only one curve", do the operation,
+     then "Show all curves"
+    Note that all B-spline curve information (order, knots) will be reset
+    Add vertex at end
+        1. Click "Add vertex at end"
+        2. Click somewhere close to the END POINT of the curve
+        3. If you want to add other vertices, no need to click button again
+    Insert vertex at middle
+        1. Click "Insert vertex at middle"
+        2. Click somewhere close to the EDGE of the curve
+        3. If you want to insert other vertices, no need to click button again
+    Move vertex
+        1. Click "Move vertex"
+        2. Drag a vertex of the curve
+        3. If you want to move other vertices, no need to click button again
+    Delete vertex
+        1. Click "Delete vertex"
+        2. Click on vertex to delete
+        3. When a curve has 0 vertices remaining, it will be deleted
+        4. If you want to delete other vertices, no need to click button again
+
+Other controls
+    Specify resolution
+        Use "Number of rendering points" scroll bar
+        For B-spline curve, I implemented segment specific version of resolution
+
+B-spline curve operations
+    Controls for B-spline curves are on the right panel
+    These operations will apply on selected B-spline curves (colored orange)
+    Get info
+        1. Click "Get info" button
+        2. Click on a vertex of a B-spline curve
+        3. Parameters of the B-spline curve will be loaded to the side window
+        4. The B-spline curve will be selected (become orange)
+    Adjust Order
+        Use spinner "Order k" (input or adjust up / down)
+    Adjust Knots
+        Use scroll bar in "Knots" section to adjust knots.
+        When computing, all Knot values will be sorted. So for example, if the
+         input box is "u0=0, u1=2.5, u2=2", the program will treat it as
+         "u0=0, u1=2, u2=2.5".
+        If there are two values that are closer than 0.001, they will be assumed
+         equal and the curve will not be drawn to prevent zero division error.
+
+File I/O
+    First specify a file name (default: "test_scene")
+    Read file
+        Press "Read file"
+    Write file
+        Press "Write file"
+    Note that the current scene will only be saved after pressing "Write file"
+
+Quit
+    Press "Quit"
+

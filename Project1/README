@@ -1,0 +1,65 @@
+This work is licensed under a Creative Commons
+Attribution-NonCommercial-NoDerivatives 4.0 International License.
+(http://creativecommons.org/licenses/by-nc-nd/4.0/)
+
+ECS 175 Fall 2019 - Assignment 1 Manual
+Author: lxylxy123456 (https://github.com/lxylxy123456/)
+
+Run: run the following line, make sure `test_scene` is in same directory
+    ./Project1
+
+Switch between DDA (default) and Bresenham
+    1. Right click anywhere on the "glut demo" screen
+    2. Click "Bresenham / DDA" button
+    3. (or you can press keyboard "B" instead of doing 1 and 2)
+    4. Current algorithm displayed on stdout
+
+Switch between Draw Only Edge (default) and Rasterization
+    1. Right click
+    2. Click "Rasterization / Draw Only Edge" button
+    3. (or press keyboard "f" instead of 1 and 2)
+
+Clipping
+    Clipping
+        1. Right click
+        2. Click "Clip" on menu
+        3. (or press keyboard "c" instead of 1 and 2)
+        4. Drag your mouse in the screen from point A (mouse down) to point B
+            (mouse up). A and B are two corners of the clip window.
+    Unclipping
+        1. Right click
+        2. Click "No Clip" on menu
+        3. (or use keyboard "Shift + C")
+
+Hide / Show a polygon
+    1. Right click
+    2. Hide / Show -> Hide / show (ID of polygon)
+    3. (or you can press "0" for hide / show polygon 0, "1" for polygon 1, ...)
+
+Translation
+    1. Right click
+    2. Translation -> Translate (ID of polygon)
+    3. Drag your mouse through the screen. This will define translation vector.
+    4. `test_scene` will be automatically updated, same below
+
+Rotation
+    1. Right click
+    2. Rotation -> Rotate (ID of polygon)
+    3. Drag your mouse through the screen. The two points you drag and the
+        centroid of the polygon will define start line and end line of rotation.
+        (Image you are editing a shape using Word / Google Docs, same below)
+
+Scaling
+    1. Right click
+    2. Scaling -> Scale (ID of polygon)
+    3. Drag your mouse through the screen. The two points you drag and the
+        centroid of the polygon will define start and end size of the polygon.
+
+Quit
+    1. Right click
+    2. Quit
+
+Auto rotate (extra feature)
+    Press "Shift + K" on keyboard
+    Press again to cancel
+

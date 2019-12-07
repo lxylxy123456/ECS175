@@ -1,0 +1,135 @@
+This work is licensed under a Creative Commons
+Attribution-NonCommercial-NoDerivatives 4.0 International License.
+(http://creativecommons.org/licenses/by-nc-nd/4.0/)
+
+ECS 175 Fall 2019 - Assignment 5 Manual
+Author: lxylxy123456 (https://github.com/lxylxy123456/)
+
+Run
+    ./Project5
+    OR
+    ./Project5 scene_name
+    All interactions and feedback are in command line
+
+Screen layout
+    The upper-left, upper-right, lower-left screens are the same as project 3
+    However, these 3 screens do NOT draw spheres
+    The lower-right screen shows the ray-tracing result (this is project 5)
+    By default, the camera is looking from (5, 5, 5) to (0, 0, 0)
+    By default, the light source is at (0.75, 0.75, 0.75)
+    By default, each 5x5 pixel have a ray (to be efficient). To make it 1x1,
+     enter "15 1" then press Enter.
+
+Sample scenes
+	All pre-rendered images are in "png" folder in the submission zip file.
+		For example, "scene4_1.png" and "scene4_2.png" are for "scene4".
+    ./Project5 scene0
+        This scene is two spheres, where the green one leaves shadow on blue one
+        To view at another angle, enter the following line and press Enter
+            8    5 7 3    -1 -1.44 -0.57    0 1 0    3    100    0.1
+        Due to reflection, the blue sphere may have some "dots". Enter `16 0` to
+         remove them.
+    ./Project5 scene1
+        This scene shows a few object's reflection. The red cube reflects the
+         green sphere and blue object. If observing closely, the green sphere
+         also reflects the red cube.
+    ./Project5 scene2
+        After loading, please enter "17" and press Enter (disable shadowing)
+        This is a blue cube with a red sphere inside. The blue cube's refraction
+         index is 1.3, so the sphere is still visible.
+    ./Project5 scene3
+        After loading, please enter "17" and press Enter (disable shadowing)
+        This is a blue cube with a red sphere inside. The blue cube's refraction
+         index is 13000, so the sphere looks like 3 separate spheres.
+    ./Project5 scene4
+        This scene is some objects, with one small gray square wrapping the
+         light source, so all other objects just have ambient light in ray
+         tracing model.
+        Enter "1 2" and press Enter to hide this gray cube, and all objects
+         become visible. (similar to scene1)
+    ./Project5 scene5
+        After loading the scene, enter the following line and press Enter
+            8    1 0 0.5    -1 1 0    0 0 1    30    30    0.1
+        The big gray part can be considered a big piece of glass. If we view the
+         green sphere behind it, the image shifts than if we do not view it
+         through glass. (a basic phenomenon in physics class)
+    ./Project5 scene6
+        After loading the scene, enter the following line and press Enter
+            17    5 11
+        The sphere can be thought as a crystal ball, and we are looking at a 
+         blue cube through it. 
+        To hide the sphere, enter "6 0" and press Enter.
+        Use "2 0   .1 0 0" and Enter multiple times to move the cube out
+
+Scene file format
+    First line is an integer N, representing number of objects
+    Repeat N times:
+        For a sphere, the first line is "0"
+            Then 3 numbers for center
+            Then 1 number for radius
+            Then 3 number for diffuse color
+            Then 1 integer for specularity
+        For a polyhedra, the first line is "1"
+            Then an integer V for number of vertices
+            Then V lines, each line is 3 numbers for vertex position
+            Then V lines, each line is 3 numbers for vertex color
+            Then an integer T for number of triangles
+            Then T lines, each line is 3 integers for index of triangle's vertex
+            Then T lines, each line is specularity of the face
+        Regardless polyhedra or sphere:
+            Then a number for refraction index
+            Then 3 numbers for kr (reflection coefficient)
+            Then 3 numbers for kt (refraction coefficient)
+
+Many menu entries are inherited from Project 3, and will not be discussed here.
+ Most of these entries are marked with "(Project 3)", and can be ignored.
+
+Menu entry 0
+    Quit
+
+Menu entry 1
+    Show / hide a polyhedra, use its index in input file (start from 0).
+
+Menu entry 5
+    Configure Phong model, with a submenu
+    Sub-entry 2, 3, 4, 5, 6, 7: specifying 3D vector or color
+    Sub-entry 1, 8, 13: specify a single floating point value
+    Sub-entry 9, 10, 11, 12, 14, 15: turn on / off some feature
+    Sub-entry 1 and 2 are exclusive. Selecting one will disable the other
+        For project 5, please only use sub-entry 2, which specifies the eye
+         position for non-ray tracing model explicitly.
+    Sub-entry 12 and 13 are exclusive, which defines how to map color after this
+     calculation to r, g, b in [0, 1]
+        Sub-entry 12 is normalizing all color such that the brightest is 1.
+         Sometimes this may make the color unstable when the light changes. 
+        Sub-entry 13 is multiplying all color by a constant, and force colors
+         larger than 1 to be 1. In this method, some thing may be too bright or
+         too dark, then you can look at output of Sub-entry 12 and decide a
+         reference constant. The defult behavior has the constant value of 100. 
+    Sub-entry 14 and 15 turns on / off reflection & refraction for all objects.
+        To configure each object, edit input file. 
+
+Menu entry 6
+    Show / hide a sphere, use its index in input file (start from 0).
+
+Menu entry 8
+    This entry changes the camera viewing model's parameters
+    Follow command line prompt, specify f, a, u, alpha, ze max, ze min
+
+Menu entry 15
+    Specifies an integer for resolution of ray tracing. Default is 5, which
+     means for each 5x5 pixel group, a ray is calculated. Minimum is 1.
+
+Menu entry 16
+    Specifies level of recursion of ray tracing. Default is 3. 
+
+Menu entry 17
+    If shadow feelers are enabled, the program will determine whether it
+     receives direct light from a light source or not. If not, it will only
+     calculate ambient light. 
+
+Animation
+    ./anime_camera.py scene0
+    Also try to use scene1, scene5, scene6
+    For pre-rendered results, see files in "gif" folder
+

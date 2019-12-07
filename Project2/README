@@ -1,0 +1,80 @@
+This work is licensed under a Creative Commons
+Attribution-NonCommercial-NoDerivatives 4.0 International License.
+(http://creativecommons.org/licenses/by-nc-nd/4.0/)
+
+ECS 175 Fall 2019 - Assignment 2 Manual
+Author: lxylxy123456 (https://github.com/lxylxy123456/)
+
+Run: run the following line, make sure `test_scene` is in same directory
+    ./Project2
+
+Specify scene file: the following command uses `bunny_scene` as scene file
+	./Project2 bunny_scene
+
+The layout of the screen follows the one given by test file:
+	upper left is project to XY plane
+		horizontal: x
+		vertical: y
+	upper right is project to YZ plane
+		horizontal: x
+		vertical: z
+	lower left is project to XZ plane
+		horizontal: y
+		vertical: z
+
+All interactions can be done by simply looking at the stdout output.
+(So basically no need to read README any more)
+
+Each time when anything (even hidden object) goes outside the bounding box, the
+ program will ask whether a bounding box should be used, by printing this:
+
+	Something is going out of [0, 1] x [0, 1] x [0, 1]
+	Use bounding box to view the entire scene?
+	0 = NO, 1 = YES: 
+
+Simply enter 0 or 1 to either not use or use the bounding box.
+
+To transform the objects on the screen, first enter operation code as an integer
+ 1. Show / hide polyhedra
+ 2. Translation
+ 3. Rotate
+ 4. Scale
+ 0. Quit
+
+1. Show / hide polyhedra
+	Then enter ID of polyhedra to show / hide. Numbering start at 0
+	For example, hide / show polyhedra 3:
+		3
+
+2. Translation
+	Then enter ID of polyhedra to translate and a translation vector as 3
+	floating point numbers.
+	For example, translate polyhedra 0 by vector (0.1, 0.2, 0.3):
+		0
+		0.1 0.2 0.3
+
+3. Rotate
+	Then enter ID of polyhedra, translation line's start and end point, and
+	rotation angle. 
+	For example, rotate polyhedra 1 w.r.t line (0.1, 0.2, 0.3) ->
+	(0.4, 0.5, 0.6) by 30 degrees:
+		1
+		0.1 0.2 0.3
+		0.4 0.5 0.6
+		30
+
+4. Scale
+	Then enter ID of polyhedra, and scaling factor
+	For example, scale polyhedra 2 by 2.5:
+		2
+		2.5
+
+5. Animation
+	./yaki_rabbit.sh
+	./camera.py
+	./HCC.py
+	./rotate.py
+
+0. Quit
+	Bye
+
