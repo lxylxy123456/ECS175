@@ -4,6 +4,8 @@
 ## License
 The actual homeworks are closed source, to avoid plagiarism. Only executables
 are provided (runs on CSIF, likely to run on other x86_64 Linux machines).
+If you have trouble with finding shared object files, the [`lib64`](lib64)
+directory may be helpful.
 
 The scripts that generate animation using the homework are open source (`*.py`
 and `*.sh`), under GNU Affero General Public License version 3.
